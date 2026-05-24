@@ -1,11 +1,9 @@
 # AUR packages
 awww
 eww
-gpu-screen-recorder
 hyprmod
 matugen-bin
 networkmanager-dmenu-git
 swayosd-git
 wlogout
 yay-bin
-yay-bin-debug
