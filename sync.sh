@@ -61,7 +61,6 @@ sync_home_file() {
 CONFIGS=(
     btop
     cava
-    easyeffects
     eww
     fastfetch
     gtk-3.0

@@ -111,16 +111,14 @@
 
 (defwindow wifi-nets
   :monitor 0
-  :geometry (geometry :x "6px" :y "2px" :width "300px" :height "295px" :anchor "top right")
+  :geometry (geometry :x "6px" :y "2px" :width "300px" :anchor "top right")
   :stacking "overlay" :exclusive false :focusable true
   (box :class "menu-root" :orientation "v" :spacing 0
     (box :class "back-row" :orientation "h" :spacing 6
       (button :class "back-btn" :hexpand true :onclick "eww close wifi-nets; eww open wifi-menu"
-        (box :orientation "h" :spacing 5 :halign "center"
-          (label :text "‹  Back")))
+        (label :text "‹  Back"))
       (button :class "back-btn" :hexpand true :onclick "eww update wifi-networks=\"$(~/.config/eww/scripts/wifi-networks.sh)\""
-        (box :orientation "h" :spacing 5 :halign "center"
-          (label :text "󰍡  Rescan"))))
+        (label :text "󰍡  Rescan")))
     (scroll :height 240 :vscroll true
       (box :class "list-box" :orientation "v" :spacing 4
         (for net in {wifi-networks}
@@ -156,13 +154,13 @@
           (label :text "Disconnect"))))
     (box :class "nav-section" :orientation "v" :spacing 4
       (button :class {bluetooth.nav_class} :hexpand true
-        :onclick "eww update bt-devices=\"$(bluetoothctl devices | grep -v Connected)\"; eww open bt-scan; eww close bt-menu"
+        :onclick "eww update bt-devices=\"$(~/.config/eww/scripts/bt-devices.sh scan)\"; eww open bt-scan; eww close bt-menu"
         (box :orientation "h" :spacing 8 :hexpand true
           (label :text "󰍱")
           (label :class "nav-label" :hexpand true :halign "start" :text "Scan Devices")
           (label :class "nav-arrow" :text "›")))
       (button :class "nav-btn" :hexpand true
-        :onclick "eww update bt-devices=\"$(bluetoothctl devices)\"; eww open bt-known; eww close bt-menu"
+        :onclick "eww update bt-devices=\"$(~/.config/eww/scripts/bt-devices.sh known)\"; eww open bt-known; eww close bt-menu"
         (box :orientation "h" :spacing 8 :hexpand true
           (label :text "󰂯")
           (label :class "nav-label" :hexpand true :halign "start" :text "Known Devices")
@@ -180,16 +178,34 @@
 
 (defwindow bt-scan
   :monitor 0
-  :geometry (geometry :x "6px" :y "2px" :width "300px" :height "295px" :anchor "top right")
+  :geometry (geometry :x "6px" :y "2px" :width "300px" :anchor "top right")
   :stacking "overlay" :exclusive false :focusable true
   (box :class "menu-root" :orientation "v" :spacing 0
     (box :class "back-row" :orientation "h" :spacing 6
       (button :class "back-btn" :hexpand true :onclick "eww close bt-scan; eww open bt-menu"
-        (box :orientation "h" :spacing 5 :halign "center"
-          (label :text "‹  Back")))
-      (button :class "back-btn" :hexpand true :onclick "eww update bt-devices=\"$(~/.config/eww/scripts/bt-devices.sh)\""
-        (box :orientation "h" :spacing 5 :halign "center"
-          (label :text "󰍱  Scan"))))
+        (label :text "‹  Back"))
+      (button :class "back-btn" :hexpand true :onclick "eww update bt-devices=\"$(~/.config/eww/scripts/bt-devices.sh scan)\""
+        (label :text "󰍱  Rescan")))
+    (scroll :height 240 :vscroll true
+      (box :class "list-box" :orientation "v" :spacing 4
+        (for dev in {bt-devices}
+          (button :class {dev.class}
+            :onclick "${dev.cmd} ${dev.mac} &"
+            (box :orientation "h" :spacing 4 :hexpand true
+              (label :class "list-icon" :text {dev.icon})
+              (label :class "list-name" :hexpand true :halign "start" :text {dev.name})
+              (label :class "list-meta" :text {dev.status}))))))))
+
+(defwindow bt-known
+  :monitor 0
+  :geometry (geometry :x "6px" :y "2px" :width "300px" :anchor "top right")
+  :stacking "overlay" :exclusive false :focusable true
+  (box :class "menu-root" :orientation "v" :spacing 0
+    (box :class "back-row" :orientation "h" :spacing 6
+      (button :class "back-btn" :hexpand true :onclick "eww close bt-known; eww open bt-menu"
+        (label :text "‹  Back"))
+      (button :class "back-btn" :hexpand true :onclick "eww update bt-devices=\"$(~/.config/eww/scripts/bt-devices.sh known)\""
+        (label :text "󰂰  Refresh")))
     (scroll :height 240 :vscroll true
       (box :class "list-box" :orientation "v" :spacing 4
         (for dev in {bt-devices}
