@@ -15,7 +15,6 @@ cliphist
 cups
 cups-pk-helper
 curl
-easyeffects
 efibootmgr
 fastfetch
 fd

@@ -17,7 +17,7 @@ My dotfiles include the apps needed to run a desktop and styling, they do not in
 ## Fresh install
 
 ```bash
-git clone https://github.com/olvk20/dotfiles.git ~/dotfiles
+git clone https://github.com/olvk20/olvk20-dots/ ~/dotfiles
 cd ~/dotfiles
 chmod +x install.sh
 ./install.sh
