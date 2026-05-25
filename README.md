@@ -24,6 +24,8 @@ My Arch Linux dotfiles — Hyprland + Waybar + Matugen theming.
   </tr>
   <tr>
     <td><img src="Preview/battery-menu.png" height="210"/></td>
+    <td><img src="Preview/app-launcher.png" height="210"/></td>
+    <td><img src="Preview/theme-selector.png" height="210"/></td>
     <td><img src="Preview/volume-menu-beta.png" height="210"/></td>
   </tr>
 </table>
