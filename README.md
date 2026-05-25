@@ -7,7 +7,8 @@ My Arch Linux dotfiles — Hyprland + Waybar + Matugen theming.
 - **Theming**: Matugen (material you, wallpaper-driven colors)
 - **Terminal**: Kitty
 - **Shell**: Zsh + Oh My Zsh
-- **Launcher & Menus (battery, network)**: Rofi
+- **Launcher & Theme selector**: Rofi
+- **Menus (battery, network)**: Eww
 - **Notifications**: SwayNC
 - **Editor**: Neovim
 
